@@ -1,0 +1,10 @@
+# web stuff
+gunicorn
+flask
+flask-caching
+flask-discord
+
+# database
+dataset
+
+deepdiff
