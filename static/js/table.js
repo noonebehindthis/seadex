@@ -109,50 +109,7 @@ const getColumnsDefinition = (table) => {
                 cell.getRow().toggleSelect();
             }
         })
-    } else {
-        columnData.push({
-            width: 30,
-            minWidth: 30,
-            cssClass: "cell-infoModal",
-            headerSort: false,
-            tooltip: () => "Info",
-            cellClick: (e, cell) => {
-                console.log("info-click", e, cell)
-                showInfoModal(cell.getRow())
-            },
-            formatter: () => '<i class="bi bi-info-circle"></i>'
-        })
     }
-    columnData.push({
-        minWidth: 160,
-        title: "Name",
-        field: "siteName",
-        hozAlign: "left",
-        cssClass: "no-wrap",
-        tooltip: cell => {
-            let data = cell.getRow().getData()
-            if (data["siteAddresses"]) {
-                const url = workaroundAddressArray(data["siteAddresses"], "array")
-                const status = (url ? window.online[url[0]] : "unknown")
-                if (status === "up" || status === "down") {
-                    return data["siteName"] + " is " + window.online[url[0]]
-                }
-            }
-            return "Status of " + data["siteName"] + " is unknown"
-        },
-        formatter: cell => {
-            let data = cell.getRow().getData()
-            const url = workaroundAddressArray(data["siteAddresses"], "array")
-            let txt = onlineStatusToDot((url ? window.online[url[0]] : "unknown")) + ' '
-            if (window.editMode) {
-                if (!cell.getValue()) {
-                    return txt + '<span class="text-warning">Animepiracy</span>'
-                }
-                return txt + cell.getValue()
-            }
-            return txt + '<a href="' + (url ? url[0] : "#") + '" target="_blank">' + cell.getValue() + '</a>'
-        }
-    })
 
     if (window.editMode) {
         columnData[1].editor = "input"
@@ -358,20 +315,6 @@ const generateAllTables = () => {
                 '<i class="bi bi-check2-circle"></i> Save</button>' +
                 '</span></div></div>'
         })
-
-        let download = '<div class="card">' +
-            '<div class="card-header">Export Table-Data</div>' +
-            '<div class="card-body p-0"><table class="table table-hover table-striped table-responsive table-dark mb-0"><tbody>'
-        tab['tables'].forEach(t => {
-            download += '<tr><td>' + t["title"] +
-                '<span class="float-end d-flex justify-content-center">' +
-                '<a class="text-decoration-none text-white me-3" title="Export as JSON" href="javascript:exportTable(\'json\', \'' + t["id"] + '\');">' +
-                'JSON <i class="bi bi-cloud-download"></i></a>' +
-                '<a class="text-decoration-none text-white me-3" title="Export as CSV" href="javascript:exportTable(\'csv\', \'' + t["id"] + '\');">' +
-                'CSV <i class="bi bi-cloud-download"></i></a></span>' +
-                '</td></tr>'
-        })
-        document.querySelector('#' + tab["tab"]).innerHTML += download + '</tbody></table></div></div>'
     })
 
     document.querySelector('#tablesList').style = ""

@@ -18,6 +18,7 @@ def health():
 @bp.route("/api/fetch/tables")
 def fetch_tables():
     """ Used by the frontend, returns a JSON list of all the tables including metadata. """
+    """
     return jsonify([
         {
             "tab": "animeTables",
@@ -27,16 +28,6 @@ def fetch_tables():
                     "id": "englishAnimeSites",
                     "title": "English Streaming Sites",
                     "type": "anime"
-                },
-                {
-                    "id": "foreignAnimeSites",
-                    "title": "Foreign Streaming Sites",
-                    "type": "anime"
-                },
-                {
-                    "id": "downloadSites",
-                    "title": "Download Only Sites",
-                    "type": "animeDownload"
                 }
             ]
         },
@@ -48,97 +39,34 @@ def fetch_tables():
                     "id": "englishMangaAggregators",
                     "title": "Aggregators",
                     "type": "manga"
-                },
-                {
-                    "id": "foreignMangaAggregators",
-                    "title": "Non-English Aggregators",
-                    "type": "manga"
-                },
-                {
-                    "id": "englishMangaScans",
-                    "title": "Scans",
-                    "type": "manga"
-                },
-                {
-                    "id": "foreignMangaScans",
-                    "title": "Non-English Scans",
-                    "type": "manga"
                 }
             ]
         },
+    ])
+    """
+    return jsonify([
         {
-            "tab": "lightNovelTables",
-            "name": "Novels",
+            "tab": "animeTables",
+            "name": "Anime",
             "tables": [
                 {
-                    "id": "lightNovels",
-                    "title": "Light Novels",
-                    "type": "novel"
-                },
-                {
-                    "id": "visualNovels",
-                    "title": "Visual Novels",
-                    "type": "novel"
-                }
-            ]
-        },
-        {
-            "tab": "applicationsTables",
-            "name": "Applications",
-            "tables": [
-                {
-                    "id": "iosApplications",
-                    "title": "iOS",
-                    "type": "application"
-                },
-                {
-                    "id": "androidApplications",
-                    "title": "Android",
-                    "type": "application"
-                },
-                {
-                    "id": "windowsApplications",
-                    "title": "Windows",
-                    "type": "application"
-                },
-                {
-                    "id": "macOSApplications",
-                    "title": "macOS",
-                    "type": "application"
-                },
-                {
-                    "id": "browserExtensions",
-                    "title": "Browser Extensions",
-                    "type": "application"
-                }
-            ]
-        },
-        {
-            "tab": "hentaiTables",
-            "name": "Hentai",
-            "tables": [
-                {
-                    "id": "hentaiAnimeSites",
-                    "title": "Hentai Anime Streaming Sites",
+                    "id": "tvReleases",
+                    "title": "TV",
                     "type": "anime"
-                },
-                {
-                    "id": "hentaiDoujinshiSites",
-                    "title": "Hentai Manga/Image Boards/LN sites",
-                    "type": "novel"
-                },
-                {
-                    "id": "hentaiDownloadSites",
-                    "title": "Hentai Download",
-                    "type": "animeDownload"
-                },
-                {
-                    "id": "hentaiApplications",
-                    "title": "Hentai Applications",
-                    "type": "application"
                 }
             ]
-        }
+        },
+        {
+            "tab": "mangaTables",
+            "name": "Manga",
+            "tables": [
+                {
+                    "id": "englishMangaAggregators",
+                    "title": "Aggregators",
+                    "type": "manga"
+                }
+            ]
+        },
     ])
 
 
@@ -147,274 +75,64 @@ def fetch_columns():
     """ Used by the frontend, returns a JSON list of all the columns in use with metadata. """
     return jsonify({
         "keys": {
-            "siteName": {
-                "name": "Name",
+            "title": {
+                "name": "Title",
                 "description": "The sites name"
             },
-            "siteAddresses": {
-                "name": "Address",
+            "alternateTitle": {
+                "name": "Alternate Title",
                 "description": "The sites address"
             },
-            "hasAds": {
-                "name": "Ads",
+            "bestRelease": {
+                "name": "Best Release",
                 "description": "Does the site have ads"
             },
-            "hasAntiAdblock": {
-                "name": "Anti-Adblock",
+            "alternateRelease": {
+                "name": "Alternate Release",
                 "description": "Does the site block adblockers"
             },
-            "hasSubs": {
-                "name": "Subs",
+            "resolution": {
+                "name": "Resolution",
                 "description": "Does the site offer subs"
             },
-            "hasDubs": {
-                "name": "Dubs",
+            "dualAudio": {
+                "name": "Dual Audio",
                 "description": "Does the site offer dubs"
             },
-            "resolution360p": {
-                "name": "360p",
-                "description": "Does the site offer 360p streams"
-            },
-            "resolution480p": {
-                "name": "480p",
-                "description": "Does the site offer 480p streams"
-            },
-            "resolution720p": {
-                "name": "720p",
-                "description": "Does the site offer 720p streams"
-            },
-            "resolution1080p": {
-                "name": "1080p",
-                "description": "Does the site offer 1080p streams"
-            },
-            "languages": {
-                "name": "Languages",
-                "description": "What language does the site support"
-            },
-            "hasReleaseSchedule": {
-                "name": "Schedule",
-                "description": "Does the site have a schedule listing"
-            },
-            "hasDirectDownloads": {
-                "name": "DL",
-                "description": "Does the site offer downloads"
-            },
-            "hasBatchDownloads": {
-                "name": "Batch DL",
-                "description": "Does the site offer batch downloads"
-            },
-            "hasTorrents": {
-                "name": "Torrents",
-                "description": "Does the site offer torrents"
-            },
-            "isMobileFriendly": {
-                "name": "Mobile",
-                "description": "Is the site friendly on mobile"
-            },
-            "malSyncSupport": {
-                "name": "MAL-Sync",
-                "description": "Does the site have MAL-Sync support"
-            },
-            "hasTags": {
-                "name": "Tags",
-                "description": "Does the site have a tagging feature"
-            },
-            "hasWatermarks": {
-                "name": "Watermark",
-                "description": "Does the site have watermarks"
-            },
-            "hasDisqusSupport": {
-                "name": "Disqus",
-                "description": "Does the site have a Disqus comments section"
-            },
-            "hasMTL": {
-                "name": "MTL",
-                "description": "Does the site use machine translation"
-            },
-            "editorNotes": {
+            "notes": {
                 "name": "Notes",
-                "description": "Any additional notes from the index editors"
-            },
-            "hasTachiyomiSupport": {
-                "name": "Tachiyomi",
-                "description": "Is Tachiyomi supported"
-            },
-            "hasMalSupport": {
-                "name": "MAL",
-                "description": "Is MAL supported"
-            },
-            "hasAnilistSupport": {
-                "name": "Anilist",
-                "description": "Is Anilist supported"
-            },
-            "hasKitsuSupport": {
-                "name": "Kitsu",
-                "description": "Is Kitsu supported"
-            },
-            "hasSimKLSupport": {
-                "name": "SimKL",
-                "description": "Is SimKL supported"
-            },
-            "features": {
-                "name": "Features",
-                "description": "Available features"
+                "description": "Does the site offer 360p streams"
             }
         },
         "types": {
             "anime": [
                 {
-                    "key": "siteName",
+                    "key": "title",
                     "hidden": False
                 },
                 {
-                    "key": "hasAds",
+                    "key": "alternateTitle",
                     "hidden": False
                 },
                 {
-                    "key": "hasAntiAdblock",
-                    "hidden": True
-                },
-                {
-                    "key": "hasSubs",
+                    "key": "bestRelease",
                     "hidden": False
                 },
                 {
-                    "key": "hasDubs",
+                    "key": "alternateRelease",
                     "hidden": False
                 },
                 {
-                    "key": "resolution1080p",
+                    "key": "resolution",
                     "hidden": False
                 },
                 {
-                    "key": "resolution720p",
+                    "key": "dualAudio",
                     "hidden": False
                 },
                 {
-                    "key": "resolution480p",
+                    "key": "notes",
                     "hidden": False
-                },
-                {
-                    "key": "resolution360p",
-                    "hidden": False
-                },
-                {
-                    "key": "languages",
-                    "hidden": True
-                },
-                {
-                    "key": "hasReleaseSchedule",
-                    "hidden": False
-                },
-                {
-                    "key": "hasDirectDownloads",
-                    "hidden": False
-                },
-                {
-                    "key": "hasBatchDownloads",
-                    "hidden": True
-                },
-                {
-                    "key": "isMobileFriendly",
-                    "hidden": True
-                },
-                {
-                    "key": "malSyncSupport",
-                    "hidden": False
-                },
-                {
-                    "key": "hasWatermarks",
-                    "hidden": True
-                },
-                {
-                    "key": "hasDisqusSupport",
-                    "hidden": True
-                },
-                {
-                    "key": "features",
-                    "hidden": True
-                },
-                {
-                    "key": "editorNotes",
-                    "hidden": True
-                }
-            ],
-            "animeDownload": [
-                {
-                    "key": "siteName",
-                    "hidden": False
-                },
-                {
-                    "key": "hasAds",
-                    "hidden": False
-                },
-                {
-                    "key": "hasAntiAdblock",
-                    "hidden": True
-                },
-                {
-                    "key": "hasSubs",
-                    "hidden": False
-                },
-                {
-                    "key": "hasDubs",
-                    "hidden": False
-                },
-                {
-                    "key": "resolution1080p",
-                    "hidden": False
-                },
-                {
-                    "key": "resolution720p",
-                    "hidden": False
-                },
-                {
-                    "key": "resolution480p",
-                    "hidden": False
-                },
-                {
-                    "key": "resolution360p",
-                    "hidden": False
-                },
-                {
-                    "key": "languages",
-                    "hidden": True
-                },
-                {
-                    "key": "hasReleaseSchedule",
-                    "hidden": False
-                },
-                {
-                    "key": "hasDirectDownloads",
-                    "hidden": False
-                },
-                {
-                    "key": "hasBatchDownloads",
-                    "hidden": True
-                },
-                {
-                    "key": "hasTorrents",
-                    "hidden": True
-                },
-                {
-                    "key": "isMobileFriendly",
-                    "hidden": True
-                },
-                {
-                    "key": "hasWatermarks",
-                    "hidden": True
-                },
-                {
-                    "key": "hasDisqusSupport",
-                    "hidden": True
-                },
-                {
-                    "key": "features",
-                    "hidden": True
-                },
-                {
-                    "key": "editorNotes",
-                    "hidden": True
                 }
             ],
             "manga": [
@@ -455,74 +173,6 @@ def fetch_columns():
                     "hidden": True
                 }
             ],
-            "novel": [
-                {
-                    "key": "siteName",
-                    "hidden": False
-                },
-                {
-                    "key": "hasAds",
-                    "hidden": False
-                },
-                {
-                    "key": "hasAntiAdblock",
-                    "hidden": True
-                },
-                {
-                    "key": "languages",
-                    "hidden": False
-                },
-                {
-                    "key": "hasMTL",
-                    "hidden": False
-                },
-                {
-                    "key": "hasDirectDownloads",
-                    "hidden": False
-                },
-                {
-                    "key": "isMobileFriendly",
-                    "hidden": True
-                },
-                {
-                    "key": "features",
-                    "hidden": False
-                },
-                {
-                    "key": "editorNotes",
-                    "hidden": True
-                }
-            ],
-            "application": [
-                {
-                    "key": "siteName",
-                    "hidden": False
-                },
-                {
-                    "key": "hasMalSupport",
-                    "hidden": False
-                },
-                {
-                    "key": "hasAnilistSupport",
-                    "hidden": False
-                },
-                {
-                    "key": "hasKitsuSupport",
-                    "hidden": False
-                },
-                {
-                    "key": "hasSimKLSupport",
-                    "hidden": False
-                },
-                {
-                    "key": "features",
-                    "hidden": False
-                },
-                {
-                    "key": "editorNotes",
-                    "hidden": True
-                }
-            ]
         }
     })
 
@@ -552,12 +202,8 @@ def fetch_tables_by_tab(tab):
             data (flask.Response): Response containing a list of the tabs tables in JSON format.
     """
     tabs = {
-        "anime": ["englishAnimeSites", "foreignAnimeSites", "downloadSites"],
-        "manga": ["englishMangaAggregators", "englishMangaScans", "foreignMangaAggregators", "foreignMangaScans"],
-        "novels": ["lightNovels", "visualNovels"],
-        "applications": ["androidApplications", "browserExtensions", "iosApplications", "macOSApplications",
-                         "visualNovels", "windowsApplications"],
-        "hentai": ["hentaiAnimeSites", "hentaiApplications", "hentaiDoujinshiSites", "hentaiDownloadSites"]
+        "anime": ["tvReleases"],
+        "manga": ["englishMangaAggregators"],
     }
 
     if tab not in tabs:
@@ -592,7 +238,6 @@ def fetch_data_by_table(table):
     results = db.query(f"SELECT * from {table.name}")
     data = []
     for row in results:
-        row["siteAddresses"] = json.loads(row["siteAddresses"])
         data.append(row)
     db.close()
     return jsonify(data)

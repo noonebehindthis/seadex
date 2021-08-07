@@ -51,9 +51,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark d-block bg-darker mb-3">
     <div class="container-fluid ps-3">
         <a class="navbar-brand" href="/">
-            <img src="/static/img/logo.png"
+            <img src="https://lh5.googleusercontent.com/brPoUvZooZjFB5FfGsl6hgmAgphFWs8fWXflBqlk5Daey5Kk5RjTXEaCz9_Bsvt6Gj8zXeWwwq0Q5W6Y5RkcUIN8o1blJVAIWQ4FfcOdWtYzz3XWBFzzkOYBuBQ8mdIT"
                  alt="Logo" width="32" height="32" class="dc-emoji">
-            /r/animepiracy Index
+            Seadex
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,40 +95,6 @@
     </div>
 </noscript>
 
-<!-- Notice -->
-<div class="container">
-    <!-- announcements
-    <div class="alert alert-dismissible border border-danger mb-3 fade show" role="alert">
-        <p>
-            Welcome to the future home of the /r/animepiracy index! This page is currently undergoing heavy
-            development and does not reflect the final version of the index. Expect things to change and
-            break while this alert is still active. Report any bugs in the <kbd>#index</kbd> channel in our Discord at
-            <a href="https://discord.gg/piracy">https://discord.gg/piracy</a>!
-        </p>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    -->
-
-    <div class="d-none alert show fade pt-0 mb-0" role="alert" id="i-am-an-adult-alert">
-        <div class="d-flex justify-content-center">
-            <div>
-                <button type="button" class="btn btn-outline-danger hover-grow hover-shadow m-1" data-bs-dismiss="alert"
-                        aria-label="Close" onclick="adultConsent(true)">
-                    I am an adult! Gimme that <img src="/static/img/gasm.png"
-                                                   class="dc-emoji" width="23px" height="23px" alt="I am an adult">!
-                </button>
-                or
-                <button type="button" class="btn btn-outline-success hover-grow hover-shadow m-1"
-                        data-bs-dismiss="alert"
-                        aria-label="Close" onclick="adultConsent(false)">
-                    Hold up! FBI <img class="dc-emoji" src="/static/img/lolipolice.png"
-                                      width="23px" height="23px" alt="I am not an adult">
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container">
     <div class="row">
         <div class="col-auto mb-2">
@@ -136,34 +102,13 @@
                 <li class="nav-item m-1">
                     <a class="nav-link link-light hover-blue active" id="animeTablesTab" href="#animeTables" role="tab"
                        data-bs-toggle="pill" aria-controls="animeTables" aria-selected="true">
-                        <i class="bi bi-film"></i> Anime
+                        <i class="bi bi-film"></i> TV
                     </a>
                 </li>
                 <li class="nav-item m-1">
                     <a class="nav-link link-light hover-blue" id="mangaTablesTab" href="#mangaTables" role="tab"
                        data-bs-toggle="pill" aria-controls="mangaTables" aria-selected="false">
-                        <i class="bi bi-book"></i> Manga
-                    </a>
-                </li>
-                <li class="nav-item m-1">
-                    <a class="nav-link link-light hover-blue" id="lightNovelTablesTab" href="#lightNovelTables"
-                       role="tab"
-                       data-bs-toggle="pill" aria-controls="lightNovelTables" aria-selected="false">
-                        <i class="bi bi-journal-text"></i> Novels
-                    </a>
-                </li>
-                <li class="nav-item m-1">
-                    <a class="nav-link link-light hover-blue" id="applicationsTablesTab" href="#applicationsTables"
-                       role="tab"
-                       data-bs-toggle="pill" aria-controls="applicationsTables" aria-selected="false">
-                        <i class="bi bi-window-sidebar"></i> Applications
-                    </a>
-                </li>
-                <li class="nav-item m-1 d-none i-am-a-adult">
-                    <a class="nav-link link-light hover-blue" id="hentaiTablesTab" href="#hentaiTables" role="tab"
-                       data-bs-toggle="pill" aria-controls="hentaiTables" aria-selected="false">
-                        <img class="dc-emoji" src="/static/img/18.png" width="23px"
-                             height="23px" alt="18+ only"> Hentai
+                        <i class="bi bi-book"></i> Movies
                     </a>
                 </li>
                 <li class="nav-item m-1">
@@ -180,9 +125,6 @@
                 <input id="tableSearch" class="form-control border-secondary bg-dark text-white" type="text"
                        placeholder="Search terms here..." aria-label="Recipient's username"
                        aria-describedby="search-addon">
-                <!--<button class="btn btn-secondary border-secondary" aria-expanded="false" data-bs-toggle="collapse"
-                        data-bs-target="#search-filter" type="button" id="search-addon" aria-controls="search-filter">
-                    <i class="bi bi-funnel"></i>-->
                 </button>
             </div>
         </div>
@@ -221,11 +163,6 @@
             </div>
         </div>
         <div class="tab-pane fade" id="mangaTables" role="tabpanel" aria-labelledby="mangaTablesTab"></div>
-        <div class="tab-pane fade" id="lightNovelTables" role="tabpanel" aria-labelledby="lightNovelTablesTab"></div>
-        <div class="tab-pane fade" id="applicationsTables" role="tabpanel"
-             aria-labelledby="applicationsTablesTab"></div>
-
-        <div class="tab-pane fade" id="hentaiTables" role="tabpanel" aria-labelledby="hentaiTablesTab"></div>
 
         <div class="tab-pane fade" id="help" role="tabpanel" aria-labelledby="helpTab">
             <div class="container">
@@ -383,8 +320,6 @@
 
 <!-- helpful utils -->
 <script src="/static/js/utils.js"></script>
-<!-- sponsored content -->
-<script src="/static/js/sponsored.js"></script>
 <!-- custom table wrapper -->
 <script src="/static/js/table.js"></script>
 <!-- app.js -->
